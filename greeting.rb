@@ -3,8 +3,8 @@ def greetings
     puts ''
     
     ARGV.each do |arg|
-        # Avoid print 'Hey, hey' to the screen.
-        unless arg == "Hey"
+        # Avoid print '<greeting>, <greeting>' to the screen.
+        unless arg == ARGV[0]
             # DRY: Reuse the first value in the arguments array.
             # This makes the code more reusable, and it allows
             # one to inject any greeting of choice as the first
