@@ -29,18 +29,16 @@ class AddressBook
    def import_from_csv(file_name)
       csv_text = File.read(file_name)
       csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
-      
+
       csv.each do |row|
          row_hash = row.to_hash
          add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
       end
+
+      puts "csv: #{csv}"
    end
+   
    # Search AddressBook for a specific entry by name (binary search)
-   #
-   # Note: This Bloc checkpoint does not mention that a binary search algorithm
-   # is performed on a sorted collection. It so happens that the 'entries.csv'
-   # are in fact lexicographically sorted. However, the AddressBook class would
-   # benefit for a method that sorts an unsorted collection.
    def binary_search(name)
       lower = 0
       upper = entries.length - 1
@@ -73,6 +71,10 @@ class AddressBook
    # establishes a base case, which is analogous to an iterative search's
    # conditional statem, and then embeds a method call to itself (i.e., it
    # recurses) until the base case is met.
+   #
+   # The 'iterative_search' method is in fact a linear search (O(n) time), and
+   # the method is defined iteratively and not recursively. Again, both this
+   # method and the 'binary_search' method apply an iterative approach.
    def iterative_search(name)
       entries.each do |item|
          if (item == name)
