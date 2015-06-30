@@ -62,7 +62,7 @@ RSpec.describe AddressBook do
             # Check the size of the entries in AddressBook
             expect(book_size).to eql 5
         end
-=begin        
+       
         it "imports the 1st entry" do
             book.import_from_csv("entries.csv")
             
@@ -71,7 +71,7 @@ RSpec.describe AddressBook do
             
             check_entry(entry_one, "Bob", "555-555-5415", "bob@blocmail.com")
         end
-
+=begin 
         it "imports the 2nd entry" do
             book.import_from_csv("entries.csv")
             
