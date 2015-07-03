@@ -46,10 +46,18 @@ RSpec.describe AddressBook do
     end
     
     context "#remove_entry" do
-        it "removes only one entry from the address book" do
-            book = AddressBook.new
+=begin
+        it "removes last entry from the address book" do
+            #book = AddressBook.new
             book.remove_entry
        
+            expect(book.entries.size).to eq 0
+        end
+=end
+        it "removes a specific entry from the address book" do
+            #book = AddressBook.new
+            book.remove_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
+            
             expect(book.entries.size).to eq 0
         end
     end
@@ -63,7 +71,7 @@ RSpec.describe AddressBook do
             # Check the size of the entries in AddressBook
             expect(book_size).to eql 5
         end
-=end
+
         it "imports the 1st entry" do
             book.import_from_csv("entries.csv")
             
@@ -74,7 +82,7 @@ RSpec.describe AddressBook do
             
             check_entry(entry_one, "Bob", "555-555-5415", "bob@blocmail.com")
         end
-=begin 
+
         it "imports the 2nd entry" do
             book.import_from_csv("entries.csv")
             
