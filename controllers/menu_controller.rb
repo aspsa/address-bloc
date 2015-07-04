@@ -161,7 +161,8 @@ class MenuController
     
     def entry_submenu(entry)
         puts "\nn - next entry"
-        puts "d = delete entry"
+        puts "d - delete entry"
+        puts "t - detonate (delete all entries)"
         puts "e - edit this entry"
         puts "m - return to main menu"
         
@@ -171,6 +172,8 @@ class MenuController
             when "n"
             when "d"
                 delete_entry(entry)
+            when "t"
+                delete_all_entries
             when "e"
                 edit_entry(entry)
                 entry_submenu(entry)
@@ -187,6 +190,11 @@ class MenuController
     def delete_entry(entry)
         @address_book.entries.delete(entry)
         puts "#{entry.name} has been deleted"
+    end
+
+    def delete_all_entries
+        # Purge the address book entires array
+        @address_book.entries = []
     end
     
     def edit_entry(entry)
