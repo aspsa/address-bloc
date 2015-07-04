@@ -160,52 +160,6 @@ class MenuController
     end
     
     def entry_submenu(entry)
-        puts "n - next entry"
-        puts "d - delete entry"
-        puts "e - edit this entry"
-        puts "m - return to main menu"
-        
-        selection = gets.chomp
-        
-        case selection
-            when "n"
-            when "d"
-            when "e"
-            when "m"
-                system "clear"
-                main_menu
-        else
-            system "clear"
-            puts "#{selection} is not a valid input"
-            entries_submenu(entry)
-        end
-    end
-    
-    def delete_entry(entry)
-        @address_book.entries.delete(entry)
-        puts "#{entry.name} has been deleted"
-    end
-    
-    def edit_entry(entry)
-        print "Updated name: "
-        name = gets.chomp
-        
-        print "Updated phone number: "
-        phone_number = gets.chomp
-        
-        print "Updated email: "
-        email = gets.chomp
-        
-        entry.name = name if !name.empty?
-        entry.phone_nummber = phone_number if !phone_number.empty?
-        entry.email = eamil if !email.empty?
-        system "clear"
-        
-        puts "Updated entry:"
-        puts entry
-    end
-    
-    def entry_submenu(entry)
         puts "\nn - next entry"
         puts "d = delete entry"
         puts "e - edit this entry"
@@ -228,5 +182,29 @@ class MenuController
                 puts "#{selection} is not a valid input"
                 entry_submenu(entry)
         end
+    end
+
+    def delete_entry(entry)
+        @address_book.entries.delete(entry)
+        puts "#{entry.name} has been deleted"
+    end
+    
+    def edit_entry(entry)
+        print "Updated name: "
+        name = gets.chomp
+        
+        print "Updated phone number: "
+        phone_number = gets.chomp
+        
+        print "Updated email: "
+        email = gets.chomp
+        
+        entry.name = name if !name.empty?
+        entry.phone_nummber = phone_number if !phone_number.empty?
+        entry.email = eamil if !email.empty?
+        system "clear"
+        
+        puts "Updated entry:"
+        puts entry
     end
 end
