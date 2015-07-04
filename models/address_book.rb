@@ -38,8 +38,6 @@ class AddressBook
          row_hash = row.to_hash
          add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
       end
-
-      puts "csv: #{csv}"
    end
    
    # Search AddressBook for a specific entry by name (binary search)
@@ -47,10 +45,10 @@ class AddressBook
       lower = 0
       upper = entries.length - 1
       
-      while lower < upper
+      while lower <= upper
          mid = (lower + upper) / 2
          mid_name = entries[mid].name
-         
+
          if name == mid_name
             return entries[mid]
          elsif name < mid_name
@@ -80,9 +78,12 @@ class AddressBook
    # the method is defined iteratively and not recursively. Again, both this
    # method and the 'binary_search' method apply an iterative approach.
    def iterative_search(name)
+      result = nil
+      
       entries.each do |item|
-         if (item == name)
-            result = entries[item]
+         if (item.name == name)
+            result = item
+            break
          else
             result = nil
          end
@@ -90,4 +91,19 @@ class AddressBook
          
       return result
    end
+   
+=begin
+   Checkpoint #24 Question...
+   
+   Which algorithm is more efficient: binary search, or iteration? How do you
+   know? How might you measure the difference?
+   
+   Answer...
+   
+   On a sorted collection, a binary search is more efficient than 'iteration'.
+   'Iteration' is a misnomer. I believe the intent of this question is to make
+   a distinction between a binary search and a linear search. A binary search is
+   executed in O(log n) time, whereas a linear serch is executed in O(n) time.
+   Hence, a binary search is more efficient in time.
+=end
 end
